@@ -96,7 +96,7 @@ class BrowserifyCompiler(SubProcessCompiler):
         dep_list = self.simple_execute_command(cmd, env=env)
         if self.verbose:
             print("dep_list is:", dep_list)
-        for dep_file in dep_list.strip().split('\n'):
+        for dep_file in dep_list.encode('utf-8').decode('utf-8').strip().split('\n'):
             if super(BrowserifyCompiler, self).is_outdated(dep_file, outfile):
                 if self.verbose:
                     print("Found dep_file \"%s\" updated." % dep_file)
